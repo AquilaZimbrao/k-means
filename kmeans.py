@@ -117,25 +117,27 @@ def recalcularCentroid():
     m = 0
     for c in centroids:
         n = len(c['flores'])
-        x = 0
-        y = 0
-        for f in c['flores']:
-            x += f['x']
-            y += f['y']
+        if n:
+            x = 0
+            y = 0
+            for f in c['flores']:
+                x += f['x']
+                y += f['y']
 
-        x = x/n
-        y = y/n
-    
-        if (not compare(x, c['x']) or not compare(y, c['y'])):
-            m = 1
-        c['x'] = x
-        c['y'] = y
+            x = x/n
+            y = y/n
+
+            if (not compare(x, c['x']) or not compare(y, c['y'])):
+                m = 1
+            c['x'] = x
+            c['y'] = y
     return m
 
 
 for t in list(range(3)):
+    flores = []
     lerFlores()
-    centroids = getCentroids(1)
+    centroids = getCentroids(t+1)
     mudou = 1
     numero = 1
     while(mudou):
